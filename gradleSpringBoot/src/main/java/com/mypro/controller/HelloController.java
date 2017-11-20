@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class HelloController {
+
     @Autowired
     UserDao userDao;
 
@@ -21,7 +22,7 @@ public class HelloController {
         return "resultPage";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{user_id}")
     public String findById(Model model, @PathVariable(value = "user_id") int user_id){
         User u = userDao.findById(user_id);
         model.addAttribute("name",u.getUser_name());
