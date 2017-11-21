@@ -1,9 +1,12 @@
-package com.mypro.beanDao;
+package com.mypro.mapper;
 
 import com.mypro.bean.User;
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Repository;
 
-@Mapper
+import java.util.List;
+
+@Repository
 public interface UserDao {
     @Select("SELECT * FROM tms_user_info where user_id = #{user_id}")
     @Results({
@@ -12,6 +15,9 @@ public interface UserDao {
             @Result(property = "password", column = "password")
     })
     User findById(@Param("user_id") int user_id);
+
+    @Select(value={"select * from tms_user_info"})
+    List<User> allUserList();
 
 
 }
